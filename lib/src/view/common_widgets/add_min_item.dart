@@ -48,7 +48,7 @@ class AddMinButton extends StatelessWidget {
                 ),
               )),
           Selector<UserDataProvider, int>(
-              selector: (context, provider) => categoryDishes.categoryCount,
+              selector: (context, provider) =>  categoryDishes.categoryCount,
               builder: (context, value, child) {
                 return Text(
                   value.toString(),

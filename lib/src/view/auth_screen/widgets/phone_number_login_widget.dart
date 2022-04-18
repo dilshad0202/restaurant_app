@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:zartek_test/src/utility/status_enum.dart';
 import 'package:zartek_test/src/view/auth_screen/widgets/login_button.dart';
+import 'package:zartek_test/src/view/user_home_screen/user_home_screen.dart';
 import 'package:zartek_test/src/view_model/auth_provider.dart';
 
 class PhoneNumberLoginWidget extends StatefulWidget {
@@ -61,9 +62,9 @@ class _PhoneNumberLoginWidgetState extends State<PhoneNumberLoginWidget> {
                                 ),
                               )
                             : IconButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   if (_formKeyPhone.currentState!.validate()) {
-                                    _authProvider.phoneAuthentication(
+                                    await _authProvider.phoneAuthentication(
                                         "+91${_phoneController.text}", context);
                                   }
                                 },
@@ -163,8 +164,8 @@ class _PhoneNumberLoginWidgetState extends State<PhoneNumberLoginWidget> {
                                 },
                                 child: const Text("Try Another Method")),
                             TextButton(
-                                onPressed: () {
-                                  _authProvider.phoneAuthentication(
+                                onPressed: () async {
+                                  await _authProvider.phoneAuthentication(
                                       "+91${_phoneController.text}", context);
                                 },
                                 child: const Text("Rety")),

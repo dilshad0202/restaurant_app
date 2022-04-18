@@ -111,6 +111,26 @@ class UserDataProvider extends ChangeNotifier {
     return deleteSucess;
   }
 
+  Future <void> clearCart() async {
+    try {
+      final batch = firestore.batch();
+      var collection = firestore
+          .collection(Collections.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .collection(Collections.usersCart);
+      var snapshots = await collection.get();
+      for (var doc in snapshots.docs) {
+        batch.delete(doc.reference);
+      }
+      await batch.commit();
+      _userCart.clear();
+      totalItemsandPrice();
+      notifyListeners();
+    } catch (e) {
+      debugPrint("$e");
+    }
+  }
+
   Future<void> getCartData(BuildContext context) async {
     fetchUserDataStatus = ProviderStatus.laoding;
     notifyListeners();

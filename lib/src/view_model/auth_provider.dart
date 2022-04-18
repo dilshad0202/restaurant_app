@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:zartek_test/main.dart';
 import 'package:zartek_test/src/services/shared_preference_helper.dart';
 import 'package:zartek_test/src/utility/status_enum.dart';
 import 'package:zartek_test/src/utility/collection_name.dart';
@@ -22,8 +23,8 @@ class AuthProvider extends ChangeNotifier {
   int counter = 60;
   Timer? _timer;
 
-
-  void phoneAuthentication(String? phone, BuildContext context) async {
+  // phone authentication
+  Future<void> phoneAuthentication(String? phone, BuildContext context) async {
     phoneLogStatus = PhoneNumberLoginStatus.loading;
     notifyListeners();
     try {
@@ -31,31 +32,6 @@ class AuthProvider extends ChangeNotifier {
           phoneNumber: phone!,
           timeout: const Duration(seconds: 60),
           verificationCompleted: (AuthCredential credntial) async {
-            final authData = await _auth.signInWithCredential(credntial);
-            User? user = authData.user;
-            await checkUserIsRegistered(_auth.currentUser!.uid).then((value) {
-              if (value) {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => UserHomeScreen()));
-              } else {
-                //uer is not registered
-                registerUser(
-                    uid: user?.uid,
-                    email: user?.email,
-                    phone: user?.phoneNumber);
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => UserHomeScreen()));
-              }
-            });
-
-            saveLogin();
-            if (_timer != null) _timer!.cancel();
-
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("Successfully Logged In"),
-            ));
-            phoneLogStatus = PhoneNumberLoginStatus.idle;
-            notifyListeners();
           },
           verificationFailed: (FirebaseAuthException exception) {
             debugPrint(exception.toString());

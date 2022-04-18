@@ -30,6 +30,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body : Consumer<RestaurantDataProvider>(
           builder: (context, provider, child) {

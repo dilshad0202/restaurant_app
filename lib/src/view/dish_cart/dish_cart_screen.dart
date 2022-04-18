@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zartek_test/src/view/common_widgets/add_min_item.dart';
 import 'package:zartek_test/src/view/dish_cart/widgets/dish_cart_item_widget.dart';
+import 'package:zartek_test/src/view/user_home_screen/user_home_screen.dart';
 import 'package:zartek_test/src/view/user_home_screen/widgets/dishList_widget.dart';
 import 'package:zartek_test/src/view_model/user_data_provider.dart';
 
@@ -121,7 +122,8 @@ class DishCartScreen extends StatelessWidget {
                 child: MaterialButton(
                   height: height * 120,
                   color: const Color.fromARGB(255, 2, 59, 2),
-                  onPressed: () {
+                  onPressed: () async {
+                    await userDataProvider.clearCart();
                     _openCustomDialog(context);
                   },
                   child: const Text(
@@ -177,7 +179,14 @@ class DishCartScreen extends StatelessWidget {
                         alignment: Alignment.bottomRight,
                         child: TextButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Navigator.pushAndRemoveUntil<dynamic>(
+                                context,
+                                MaterialPageRoute<dynamic>(
+                                  builder: (BuildContext context) =>
+                                      UserHomeScreen(),
+                                ),
+                                (route) => false,
+                              );
                             },
                             child: const Text("Ok")),
                       )
