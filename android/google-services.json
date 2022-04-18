@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "168083548951",
+    "project_id": "test-8828a",
+    "storage_bucket": "test-8828a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168083548951:android:1f2e22902d68ca2663a552",
+        "android_client_info": {
+          "package_name": "com.example.zartek_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168083548951-vla0v1doll2886joj2e1cs1re5rq5b0k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zartek_test",
+            "certificate_hash": "46a6c0cf19050d2b94de29433b1242820be36032"
+          }
+        },
+        {
+          "client_id": "168083548951-r97mkk99kmm93v1qim9buqopnh9ov6hp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAebP_ktWlKsVfIJrcEokxDmbqQddPRMm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168083548951-r97mkk99kmm93v1qim9buqopnh9ov6hp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
